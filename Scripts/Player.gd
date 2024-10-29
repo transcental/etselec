@@ -29,20 +29,23 @@ func _physics_process(delta: float) -> void:
 	if !is_climbing:
 		player_animations()
 		
-	if is_jumping:
-		var jump_input_strength = Input.get_action_strength("ui_jump")
-		if jump_strength < 11 and jump_input_strength > 0:
-			jump_strength += (1 * jump_input_strength)
-			var jump_vel = jump_height * jump_strength
-			self.velocity.y = jump_vel
-			self.velocity.x *= jump_strength
-	
+	var jump_amount = 0
+	while is_jumping and jump_amount < 10:
+		var acc = 10
+		self.position.x += (delta * velocity.x) + (1/2 * acc * (delta * delta))
+		self.position.y += (delta * velocity.y) + (1/2 * acc * (delta * delta))
+		self.velocity.y += acc * jump_height * delta
+		jump_amount += 1
+		#if jump_strength < 11 and jump_input_strength > 0:
+			#jump_strength += (1 * jump_input_strength)
+			#var jump_vel = jump_height * jump_strength
+			#self.velocity.y = jump_vel
+			#self.velocity.x *= jump_strength
+	#
 	if self.is_on_floor():
 		is_jumping = false
 		jump_strength = 0
-	else:
-		self.velocity.y = self.velocity.y + 100
-
+		jump_amount = 0
 	
 
 func player_animations():
@@ -65,7 +68,6 @@ func player_animations():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_jump") and self.is_on_floor():
-		self.velocity.y = jump_height
 		is_jumping = true
 		current_anim = "jump"
 		$AnimatedSprite2D.play("jump")
