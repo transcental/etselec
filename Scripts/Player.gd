@@ -7,6 +7,7 @@ extends CharacterBody2D
 var is_dashing = false
 var is_climbing = false
 var is_jumping = false
+var jump_strength = 0
 
 var current_anim
 
@@ -28,14 +29,20 @@ func _physics_process(delta: float) -> void:
 	if !is_climbing:
 		player_animations()
 		
-	while is_jumping:
-		var jump_strength = Input.get_action_strength("ui_jump")
-		print(jump_strength)
-		var jump_vel = jump_height * jump_strength
-		self.velocity.y = jump_vel
+	if is_jumping:
+		var jump_input_strength = Input.get_action_strength("ui_jump")
+		if jump_strength < 11 and jump_input_strength > 0:
+			jump_strength += (1 * jump_input_strength)
+			var jump_vel = jump_height * jump_strength
+			self.velocity.y = jump_vel
+			self.velocity.x *= jump_strength
 	
 	if self.is_on_floor():
 		is_jumping = false
+		jump_strength = 0
+	else:
+		self.velocity.y = self.velocity.y + 100
+
 	
 
 func player_animations():
