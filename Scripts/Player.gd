@@ -3,74 +3,98 @@ extends CharacterBody2D
 @export var speed = 175.0
 @export var gravity = 300
 @export var jump_height = -145
+@export var acceleration = 10
+@export var dash_speed = 400  # Example value for dashing
+
+signal died(deaths)
 
 var is_dashing = false
 var is_climbing = false
 var is_jumping = false
+var fast_falling = false
 var jump_strength = 0
-
 var current_anim
+var checkpoint = null
+var deaths = 0
 
+func _ready():
+	checkpoint = $StartPos.global_position
+	print('checkpoint', checkpoint)
 
 func horizontal_movement():
 	var hor_inp = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	self.velocity.x = hor_inp * speed
 
-
 func _physics_process(delta: float) -> void:
-	# calculate movement
-	self.velocity.y += gravity * delta
+	var grounded = self.is_on_floor()
+
+	# Handle gravity
+	if not grounded:
+		self.velocity.y += gravity * delta
+
 	horizontal_movement()
-	
-	# apply movement
+
+	# Jump handling
+	if is_jumping and grounded:
+		self.velocity.y = jump_height  # Set jump velocity immediately
+		is_jumping = false
+
+	# Apply movement
 	self.move_and_slide()
 
-	# display animations
-	if !is_climbing:
+	# Apply animations
+	if not is_climbing:
 		player_animations()
-		
-	var jump_amount = 0
-	while is_jumping and jump_amount < 10:
-		var acc = 10
-		self.position.x += (delta * velocity.x) + (1/2 * acc * (delta * delta))
-		self.position.y += (delta * velocity.y) + (1/2 * acc * (delta * delta))
-		self.velocity.y += acc * jump_height * delta
-		jump_amount += 1
-		#if jump_strength < 11 and jump_input_strength > 0:
-			#jump_strength += (1 * jump_input_strength)
-			#var jump_vel = jump_height * jump_strength
-			#self.velocity.y = jump_vel
-			#self.velocity.x *= jump_strength
-	#
-	if self.is_on_floor():
-		is_jumping = false
-		jump_strength = 0
-		jump_amount = 0
-	
+
+	if not grounded and fast_falling:
+		self.velocity.y += gravity * 2 * delta  # Faster falling when holding down
 
 func player_animations():
-	# heading left
-	if Input.is_action_pressed("ui_left")|| Input.is_action_just_released("ui_jump"):
+	if is_climbing:
+		current_anim = "climb"
+		$AnimatedSprite2D.play("climb")
+		return
+
+	if Input.is_action_pressed("ui_left"):
 		$AnimatedSprite2D.flip_h = true
 		current_anim = "run"
 		$AnimatedSprite2D.play("run")
 
-	# heading right
-	if Input.is_action_pressed("ui_right") || Input.is_action_just_released("ui_jump"):
+	elif Input.is_action_pressed("ui_right"):
 		$AnimatedSprite2D.flip_h = false
 		current_anim = "run"
 		$AnimatedSprite2D.play("run")
-	
-	if !Input.is_anything_pressed():
+
+	elif not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
 		current_anim = "idle"
 		$AnimatedSprite2D.play("idle")
 
+	if is_jumping:
+		current_anim = "jump"
+		$AnimatedSprite2D.play("jump")
+
+func kill():
+	self.position = checkpoint
+	self.velocity = Vector2.ZERO
+	is_jumping = false
+	is_dashing = false
+	is_climbing = false
+	fast_falling = false
+	deaths += 1
+	print('died %s deaths' % deaths)
+	died.emit(deaths)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_jump") and self.is_on_floor():
 		is_jumping = true
 		current_anim = "jump"
 		$AnimatedSprite2D.play("jump")
+
+	if event.is_action_pressed("ui_down") and not self.is_on_floor():
+		fast_falling = true
+
+	if event.is_action_released("ui_down"):
+		fast_falling = false
 
 	if event.is_action_pressed("ui_dash"):
 		is_dashing = true
@@ -81,7 +105,6 @@ func _input(event: InputEvent) -> void:
 		self.velocity.y = -200
 		print("Climbing - handle movement later")
 
-
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if current_anim == "climbing":
 		is_climbing = false
@@ -89,3 +112,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		is_dashing = false
 
 	current_anim = null
+
+func _on_deathbox_body_entered(_body: Node2D) -> void:
+	print('Entered deathbox - body')
+	kill()

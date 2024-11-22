@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=4 uid="uid://8fv06i8rkaj2"]
+[gd_scene load_steps=85 format=4 uid="uid://8fv06i8rkaj2"]
 
 [ext_resource type="PackedScene" uid="uid://bg07ymcviqtgt" path="res://Scenes/Player.tscn" id="1_2e618"]
 [ext_resource type="Texture2D" uid="uid://cyhgme8a3vgxp" path="res://Sprites/TileSheets/bgBrick.png" id="2_u688s"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://8e6eisqtl4pn" path="res://Sprites/TileSheets/bgReflection.png" id="39_wswk8"]
 [ext_resource type="Texture2D" uid="uid://ckcjdo13j2a08" path="res://Sprites/TileSheets/bgResortStone.png" id="40_14i0j"]
 [ext_resource type="Texture2D" uid="uid://dl4qttxg3vtt0" path="res://Sprites/TileSheets/bgSnow.png" id="41_1yol1"]
+[ext_resource type="Script" path="res://Scripts/DeathCounter.gd" id="42_73tsl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0myly"]
 texture = ExtResource("2_u688s")
@@ -1846,12 +1847,34 @@ sources/37 = SubResource("TileSetAtlasSource_jxq63")
 sources/38 = SubResource("TileSetAtlasSource_8egwc")
 sources/39 = SubResource("TileSetAtlasSource_qpkrc")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvvw6"]
+size = Vector2(53.1794, 2.07396)
+
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_2e618")]
 position = Vector2(7, 480)
 
+[node name="StartPos" type="Marker2D" parent="Player"]
+
 [node name="Ground" type="TileMapLayer" parent="."]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAAAB8AEwACAAMAAEABAB8AEwACAAMAAEACAB8AEwACAAMAAEADAB8AEwACAAMAAEAEAB8AEwACAAMAAEAFAB8AEwACAAMAAEAGAB8AEwACAAMAAEAHAB8AEwACAAMAAEAIAB8AEwACAAMAAEAJAB8AEwACAAMAAEAKAB8AEwACAAMAAEALAB8AEwACAAMAAEAMAB4AEwACAAMAAEAMAB0AEwACAAMAAEANAB0AEwACAAMAAEAOAB0AEwACAAMAAEAPAB0AEwACAAMAAEAQAB0AEwACAAMAAEARAB0AEwACAAMAAEASAB0AEwACAAMAAEATAB0AEwACAAMAAEAUAB0AEwACAAMAAEATABwAEwACAAMAAEAUABwAEwACAAMAAEAVABwAEwACAAMAAEAWABwAEwACAAMAAEAXABwAEwACAAMAAEAYABwAEwACAAMAAEAZABwAEwACAAMAAEAaABwAEwACAAMAAEAbABwAEwACAAMAAEAcABwAEwACAAMAAEAdABwAEwACAAMAAEAeABwAEwACAAMAAEAmAB4AEwACAAMAAEAnAB4AEwACAAMAAEAoAB4AEwACAAMAAEApAB4AEwACAAMAAEAqAB4AEwACAAMAAEArAB4AEwACAAMAAEAsAB4AEwACAAMAAEAtAB4AEwACAAMAAEAuAB4AEwACAAMAAEAvAB4AEwACAAMAAEAwAB4AEwACAAMAAEAxAB4AEwACAAMAAEAqAB0AEwACAAMAAEAqABwAEwACAAMAAEApABwAEwACAAMAAEAqABoAEwACAAMAAEAtABkAEwACAAMAAEAuABkAEwACAAMAAEAuABoAEwACAAMAAEAvABsAEwACAAMAAEAvABwAEwACAAMAAEAuABwAEwACAAMAAEAuAB0AEwACAAMAAEAtAB0AEwACAAMAAEAsAB0AEwACAAMAAEAsABwAEwACAAMAAEAsABsAEwACAAMAAEArABwAEwACAAMAAEApAB0AEwACAAMAAEArABsAEwACAAMAAEAqABsAEwACAAMAAEArABoAEwACAAMAAEAsABoAEwACAAMAAEAtABoAEwACAAMAAEAuABsAEwACAAMAAEAtABwAEwACAAMAAEAtABsAEwACAAMAAEAyAB4AEwACAAMAAEAzAB4AEwACAAMAAEA0AB4AEwACAAMAAEA1AB4AEwACAAMAAEA2AB4AEwACAAMAAEA3AB4AEwACAAMAAEA4AB4AEwACAAMAAEA5AB4AEwACAAMAAEA6AB4AEwACAAMAAEA7AB4AEwACAAMAAEA8AB4AEwACAAMAAEA9AB4AEwACAAMAAEA+AB4AEwACAAMAAEA/AB4AEwACAAMAAEBAAB4AEwACAAMAAEBBAB8AEwACAAMAAEBCAB8AEwACAAMAAEBDAB8AEwACAAMAAEBEAB8AEwACAAMAAEBFAB8AEwACAAMAAEBGAB8AEwACAAMAAEBHAB8AEwACAAMAAEABAB4AGwAAAAAAAAACAB4AGwAAAAAAABA=")
 tile_set = SubResource("TileSet_mucet")
+
+[node name="Deathbox" type="Area2D" parent="."]
+position = Vector2(7.62939e-06, 578)
+scale = Vector2(21.6075, 35.3266)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathbox"]
+position = Vector2(26.5862, 0.972837)
+shape = SubResource("RectangleShape2D_yvvw6")
+
+[node name="DeathCounter" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "💀 0"
+script = ExtResource("42_73tsl")
+
+[connection signal="died" from="Player" to="DeathCounter" method="_on_player_died"]
+[connection signal="body_entered" from="Deathbox" to="Player" method="_on_deathbox_body_entered"]
