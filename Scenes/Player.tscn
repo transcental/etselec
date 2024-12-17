@@ -73,6 +73,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hwle"]
 size = Vector2(14, 21)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdktp"]
+size = Vector2(14, 21)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_0872s"]
 animations = [{
 "frames": [{
@@ -317,9 +320,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdktp"]
-size = Vector2(14, 21)
-
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
 platform_wall_layers = 23
@@ -329,14 +329,14 @@ script = ExtResource("1_wx6vl")
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_1hwle")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_0872s")
-animation = &"idle"
-
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, 5.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_xdktp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0872s")
+animation = &"idle"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

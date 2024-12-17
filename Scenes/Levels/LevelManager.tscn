@@ -1097,6 +1097,8 @@ sources/2 = SubResource("TileSetAtlasSource_6u8jb")
 size = Vector2(52, 2)
 
 [node name="LevelManager" type="Node2D"]
+z_index = 14
+z_as_relative = false
 script = ExtResource("1_7b8ng")
 
 [node name="Level" type="TileMapLayer" parent="."]

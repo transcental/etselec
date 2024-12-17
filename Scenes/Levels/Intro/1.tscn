@@ -19,4 +19,4 @@ tile_map_data = PackedByteArray("AAAVABIAAAAAAAAAAAA=")
 tile_map_data = PackedByteArray("AAAlABAAAgAAAAAAAAA=")
 
 [node name="Player" parent="." index="6"]
-position = Vector2(424, 522)
+position = Vector2(116, 608)
