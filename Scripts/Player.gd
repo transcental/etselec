@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @export var speed = 175.0
@@ -6,7 +7,7 @@ extends CharacterBody2D
 @export var acceleration = 10
 @export var dash_speed = 400  # Example value for dashing
 
-signal died(deaths)
+signal collided(player: Player, event: Node2D)
 
 var is_dashing = false
 var is_climbing = false
@@ -15,10 +16,9 @@ var fast_falling = false
 var jump_strength = 0
 var current_anim
 var checkpoint = null
-var deaths = 0
 
 func _ready():
-	checkpoint = $StartPos.global_position
+	checkpoint = self.global_position
 	print('checkpoint', checkpoint)
 
 func horizontal_movement():
@@ -27,18 +27,19 @@ func horizontal_movement():
 
 func _physics_process(delta: float) -> void:
 	var grounded = self.is_on_floor()
-
+	print(self.global_position)
+#
 	# Handle gravity
-	if not grounded:
-		self.velocity.y += gravity * delta
-
+	#if not grounded:
+		#self.velocity.y += gravity * delta
+#
 	horizontal_movement()
-
+#
 	# Jump handling
 	if is_jumping and grounded:
 		self.velocity.y = jump_height  # Set jump velocity immediately
 		is_jumping = false
-
+#
 	# Apply movement
 	self.move_and_slide()
 
@@ -48,6 +49,9 @@ func _physics_process(delta: float) -> void:
 
 	if not grounded and fast_falling:
 		self.velocity.y += gravity * 2 * delta  # Faster falling when holding down
+		
+	for body in $Area2D.get_overlapping_bodies():
+		collided.emit(self, body)
 
 func player_animations():
 	if is_climbing:
@@ -80,9 +84,6 @@ func kill():
 	is_dashing = false
 	is_climbing = false
 	fast_falling = false
-	deaths += 1
-	print('died %s deaths' % deaths)
-	died.emit(deaths)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_jump") and self.is_on_floor():
@@ -112,7 +113,3 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		is_dashing = false
 
 	current_anim = null
-
-func _on_deathbox_body_entered(_body: Node2D) -> void:
-	print('Entered deathbox - body')
-	kill()
