@@ -27,7 +27,7 @@ func horizontal_movement():
 
 func _physics_process(delta: float) -> void:
 	var grounded = self.is_on_floor()
-	print(self.global_position)
+	#print(self.global_position)
 #
 	# Handle gravity
 	#if not grounded:

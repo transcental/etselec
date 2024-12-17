@@ -4,7 +4,7 @@ extends Node2D
 
 @export var next: Resource = preload("res://Scenes/Levels/LevelManager.tscn")
 
-var player = preload("res://Scenes/Player.tscn")
+var player_ref = preload("res://Scenes/Player.tscn")
 
 signal died
 signal completed_level

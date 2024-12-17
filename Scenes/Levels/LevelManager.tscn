@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://bmicx38brrvvy"]
+[gd_scene load_steps=101 format=3 uid="uid://bmicx38brrvvy"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_7b8ng"]
 [ext_resource type="Texture2D" uid="uid://dtnnxtkyyydw2" path="res://Sprites/TileSheets/woodStoneEdges.png" id="2_711ld"]
@@ -46,6 +46,8 @@
 [ext_resource type="Texture2D" uid="uid://sx0pk8tubffc" path="res://Sprites/spikes/outline_right00.png" id="44_6wt2d"]
 [ext_resource type="Texture2D" uid="uid://gotylk87wfii" path="res://Sprites/spikes/outline_up00.png" id="45_mjyhh"]
 [ext_resource type="PackedScene" uid="uid://bg07ymcviqtgt" path="res://Scenes/Player.tscn" id="46_ci87f"]
+[ext_resource type="Texture2D" uid="uid://d5tapqt2dj8p" path="res://Sprites/TileSheets/savepoint.png" id="46_jmdep"]
+[ext_resource type="Texture2D" uid="uid://cggpq8xm4tuw0" path="res://Sprites/TileSheets/goal.png" id="47_tyxxa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j5uc8"]
 texture = ExtResource("2_711ld")
@@ -1078,6 +1080,24 @@ sources/1 = SubResource("TileSetAtlasSource_mcye1")
 sources/2 = SubResource("TileSetAtlasSource_mwmmq")
 sources/3 = SubResource("TileSetAtlasSource_rg836")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ln0wx"]
+texture = ExtResource("46_jmdep")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nck14"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_ln0wx")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6u8jb"]
+texture = ExtResource("47_tyxxa")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_wynfy"]
+tile_size = Vector2i(32, 32)
+sources/2 = SubResource("TileSetAtlasSource_6u8jb")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldoyg"]
 size = Vector2(52, 2)
 
@@ -1095,8 +1115,10 @@ collision_enabled = false
 tile_set = SubResource("TileSet_ng3jy")
 
 [node name="Checkpoint" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_nck14")
 
 [node name="Goal" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_wynfy")
 
 [node name="Deathbox" type="Area2D" parent="."]
 position = Vector2(0, 578)

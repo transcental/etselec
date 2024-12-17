@@ -78,6 +78,14 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_3p8mt")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3p8mt")
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_yn1x8")
@@ -321,7 +329,7 @@ script = ExtResource("1_wx6vl")
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_1hwle")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0872s")
 animation = &"idle"
 
@@ -331,4 +339,4 @@ position = Vector2(0, 5.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_xdktp")
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D2" to="." method="_on_animated_sprite_2d_animation_finished"]
