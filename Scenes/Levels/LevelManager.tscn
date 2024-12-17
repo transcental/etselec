@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://bmicx38brrvvy"]
+[gd_scene load_steps=97 format=3 uid="uid://bmicx38brrvvy"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_7b8ng"]
 [ext_resource type="Texture2D" uid="uid://dtnnxtkyyydw2" path="res://Sprites/TileSheets/woodStoneEdges.png" id="2_711ld"]
@@ -41,10 +41,8 @@
 [ext_resource type="Texture2D" uid="uid://8e6eisqtl4pn" path="res://Sprites/TileSheets/bgReflection.png" id="39_hsbxw"]
 [ext_resource type="Texture2D" uid="uid://ckcjdo13j2a08" path="res://Sprites/TileSheets/bgResortStone.png" id="40_38ce3"]
 [ext_resource type="Texture2D" uid="uid://dl4qttxg3vtt0" path="res://Sprites/TileSheets/bgSnow.png" id="41_s7fyi"]
-[ext_resource type="Texture2D" uid="uid://5n4l7rewpum5" path="res://Sprites/spikes/outline_down00.png" id="42_g2ojl"]
-[ext_resource type="Texture2D" uid="uid://dccx0i3m0bksk" path="res://Sprites/spikes/outline_left00.png" id="43_avx3a"]
-[ext_resource type="Texture2D" uid="uid://sx0pk8tubffc" path="res://Sprites/spikes/outline_right00.png" id="44_6wt2d"]
-[ext_resource type="Texture2D" uid="uid://gotylk87wfii" path="res://Sprites/spikes/outline_up00.png" id="45_mjyhh"]
+[ext_resource type="Texture2D" uid="uid://5n4l7rewpum5" path="res://Sprites/spikes/outline_down00.png" id="42_dn2qv"]
+[ext_resource type="Texture2D" uid="uid://gotylk87wfii" path="res://Sprites/spikes/outline_up00.png" id="45_mlbrx"]
 [ext_resource type="PackedScene" uid="uid://bg07ymcviqtgt" path="res://Scenes/Player.tscn" id="46_ci87f"]
 [ext_resource type="Texture2D" uid="uid://d5tapqt2dj8p" path="res://Sprites/TileSheets/savepoint.png" id="46_jmdep"]
 [ext_resource type="Texture2D" uid="uid://cggpq8xm4tuw0" path="res://Sprites/TileSheets/goal.png" id="47_tyxxa"]
@@ -1062,23 +1060,20 @@ sources/11 = SubResource("TileSetAtlasSource_wfwri")
 sources/12 = SubResource("TileSetAtlasSource_p0uhf")
 sources/13 = SubResource("TileSetAtlasSource_t45s4")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_htjea"]
-texture = ExtResource("42_g2ojl")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0qnq6"]
+texture = ExtResource("42_dn2qv")
+texture_region_size = Vector2i(10, 9)
+0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mcye1"]
-texture = ExtResource("43_avx3a")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mwmmq"]
-texture = ExtResource("44_6wt2d")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rg836"]
-texture = ExtResource("45_mjyhh")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d54w3"]
+texture = ExtResource("45_mlbrx")
+texture_region_size = Vector2i(10, 9)
+0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ng3jy"]
-sources/0 = SubResource("TileSetAtlasSource_htjea")
-sources/1 = SubResource("TileSetAtlasSource_mcye1")
-sources/2 = SubResource("TileSetAtlasSource_mwmmq")
-sources/3 = SubResource("TileSetAtlasSource_rg836")
+tile_size = Vector2i(10, 9)
+sources/4 = SubResource("TileSetAtlasSource_0qnq6")
+sources/7 = SubResource("TileSetAtlasSource_d54w3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ln0wx"]
 texture = ExtResource("46_jmdep")
