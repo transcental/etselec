@@ -9,9 +9,6 @@ var current_scene: Node2D
 @onready var window: Window = get_window()
 
 func new_scene(scene: Resource):
-	#var WINDOW_SIZE = window.size
-	#current_viewport_container.size = WINDOW_SIZE
-	#print(WINDOW_SIZE, $CurrentLevelContainer/CurrentLevel.size)
 	var object = scene.instantiate()
 	current_scene = object
 	current_scene.died.connect(die)

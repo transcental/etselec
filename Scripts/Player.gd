@@ -29,8 +29,8 @@ func _physics_process(delta: float) -> void:
 	var grounded = self.is_on_floor()
 #
 	# Handle gravity
-	#if not grounded:
-		#self.velocity.y += gravity * delta
+	if not grounded:
+		self.velocity.y += gravity * delta
 #
 	horizontal_movement()
 #
@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		self.velocity.y += gravity * 2 * delta  # Faster falling when holding down
 		
 	for body in $Area2D.get_overlapping_bodies():
-		#print('beep boop you got hit')
+		print('beep boop you got hit')
 		collided.emit(self, body)
 
 

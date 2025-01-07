@@ -14,10 +14,12 @@ tile_map_data = PackedByteArray("AAABACcAAAAAAAQAAAACACcAAAAAAAQAAAADACcAAAAAAAQ
 tile_map_data = PackedByteArray("AABGAD8ABwAAAAAAAABHAD8ABwAAAAAAAABIAD8ABwAAAAAAAABJAD8ABwAAAAAAAAA=")
 
 [node name="Checkpoint" parent="." index="3"]
-tile_map_data = PackedByteArray("AAAVABIAAAAAAAAAAAA=")
+position = Vector2(-94, -70)
+tile_map_data = PackedByteArray("AAAVABIAAAAAAAAAAAAWABIAAAAAAAAAAAA=")
 
 [node name="Goal" parent="." index="4"]
-tile_map_data = PackedByteArray("AAAlABAAAgAAAAAAAAA=")
+position = Vector2(-24, -63)
+tile_map_data = PackedByteArray("AAAkABAAAgAAAAAAAAA=")
 
 [node name="Player" parent="." index="6"]
-position = Vector2(45, 607)
+position = Vector2(30, 538)

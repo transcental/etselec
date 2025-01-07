@@ -19,8 +19,6 @@ func on_player_collision(player: Player, collision: Node2D) -> void:
 		print('Oh hi I won')
 		remove_child(player)
 		completed_level.emit()
-	elif collision == $Player:
-		pass
 	else:
 		print(player.name, collision.name)
 
