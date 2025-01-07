@@ -1,22 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://8fv06i8rkaj2"]
+[gd_scene load_steps=3 format=3 uid="uid://8fv06i8rkaj2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_ldbii"]
 [ext_resource type="Script" path="res://Scripts/DeathCounter.gd" id="42_73tsl"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ebaky"]
-viewport_path = NodePath("CurrentLevel")
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ldbii")
 
-[node name="CurrentLevel" type="SubViewport" parent="."]
-size = Vector2i(1152, 648)
+[node name="CurrentLevelContainer" type="SubViewportContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 652.0
+stretch = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("ViewportTexture_ebaky")
+[node name="CurrentLevel" type="SubViewport" parent="CurrentLevelContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 652)
+render_target_update_mode = 4
 
-[node name="DeathCounter" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="DeathCounter" type="Label" parent="CurrentLevelContainer"]
+layout_mode = 2
 text = "💀 0"
 script = ExtResource("42_73tsl")

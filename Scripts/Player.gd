@@ -50,7 +50,9 @@ func _physics_process(delta: float) -> void:
 		self.velocity.y += gravity * 2 * delta  # Faster falling when holding down
 		
 	for body in $Area2D.get_overlapping_bodies():
+		#print('beep boop you got hit')
 		collided.emit(self, body)
+
 
 func player_animations():
 	if is_climbing:

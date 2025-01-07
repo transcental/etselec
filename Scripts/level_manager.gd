@@ -4,8 +4,6 @@ extends Node2D
 
 @export var next: Resource = preload("res://Scenes/Levels/LevelManager.tscn")
 
-var player_ref = preload("res://Scenes/Player.tscn")
-
 signal died
 signal completed_level
 signal got_checkpoint
@@ -21,6 +19,10 @@ func on_player_collision(player: Player, collision: Node2D) -> void:
 		print('Oh hi I won')
 		remove_child(player)
 		completed_level.emit()
+	elif collision == $Player:
+		pass
+	else:
+		print(player.name, collision.name)
 
 
 func _ready() -> void:
