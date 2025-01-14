@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
 		collided.emit(self, body)
 
 
+
 func player_animations():
 	if is_climbing:
 		current_anim = "climb"
@@ -87,6 +88,9 @@ func kill():
 	fast_falling = false
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_force_down"):
+		self.position.y -= 1
+	
 	if event.is_action_pressed("ui_jump") and self.is_on_floor():
 		is_jumping = true
 		current_anim = "jump"
