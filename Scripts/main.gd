@@ -9,6 +9,7 @@ var current_scene: Node2D
 @onready var window: Window = get_window()
 
 func new_scene(scene: Resource):
+	current_viewport.remove_child(current_scene)
 	var object = scene.instantiate()
 	current_scene = object
 	current_scene.died.connect(die)
