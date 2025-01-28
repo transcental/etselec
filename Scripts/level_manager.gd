@@ -6,15 +6,15 @@ extends Node2D
 
 signal died
 signal completed_level
-signal got_checkpoint
+signal got_checkpoint(pos: Vector2)
+
 
 func on_player_collision(player: Player, collision: Node2D) -> void:	
 	if collision == $Spinners: # Spikes! ow ow ow
 		print('Owie, zowie')
 		died.emit()
 	elif collision == $Checkpoint:
-		print('Yay, I\'m safer')
-		got_checkpoint.emit()
+		got_checkpoint.emit(player.position)
 	elif collision == $Goal:
 		print('Oh hi I won')
 		remove_child(player)

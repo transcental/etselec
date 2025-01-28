@@ -1355,3 +1355,4 @@ shape = SubResource("RectangleShape2D_ldoyg")
 position = Vector2(63, 574)
 
 [connection signal="died" from="." to="Player" method="_on_player_died"]
+[connection signal="got_checkpoint" from="." to="Player" method="_on_got_checkpoint"]
