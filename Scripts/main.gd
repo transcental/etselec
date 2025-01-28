@@ -8,6 +8,9 @@ var current_scene: Node2D
 @onready var current_viewport = $CurrentLevelContainer/CurrentLevel
 @onready var window: Window = get_window()
 
+
+signal new_death
+
 func new_scene(scene: Resource):
 	current_viewport.remove_child(current_scene)
 	var object = scene.instantiate()
@@ -22,7 +25,7 @@ func current_won():
 
 func die():
 	print('Aw, I died :(')
-	_ready()
+	new_death.emit()
 
 
 func _ready() -> void:

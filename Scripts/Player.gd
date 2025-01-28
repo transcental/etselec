@@ -111,6 +111,7 @@ func _input(event: InputEvent) -> void:
 		self.velocity.y = -200
 		print("Climbing - handle movement later")
 
+
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if current_anim == "climbing":
 		is_climbing = false
@@ -118,3 +119,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		is_dashing = false
 
 	current_anim = null
+
+
+func _on_player_died() -> void:
+	self.position = checkpoint

@@ -20,3 +20,5 @@ render_target_update_mode = 4
 layout_mode = 2
 text = "💀 0"
 script = ExtResource("42_73tsl")
+
+[connection signal="new_death" from="." to="CurrentLevelContainer/DeathCounter" method="_on_player_death"]

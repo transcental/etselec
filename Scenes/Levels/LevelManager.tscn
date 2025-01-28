@@ -1353,3 +1353,5 @@ shape = SubResource("RectangleShape2D_ldoyg")
 
 [node name="Player" parent="." instance=ExtResource("46_ci87f")]
 position = Vector2(63, 574)
+
+[connection signal="died" from="." to="Player" method="_on_player_died"]
