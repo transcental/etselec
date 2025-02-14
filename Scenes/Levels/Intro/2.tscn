@@ -11,7 +11,7 @@ tile_map_data = PackedByteArray("AAAAACYAGAAAAAAAAAABACYAGAAAAAAAAAACACYAGAAAAAA
 tile_map_data = PackedByteArray("AAA/ADsABAAAAAAAAABAADsABAAAAAAAAABBADsABAAAAAAAAABCADsABAAAAAAAAABDADsABAAAAAAAAABEADsABAAAAAAAAABFADsABAAAAAAAAABGADsABAAAAAAAAAA=")
 
 [node name="Checkpoint" parent="." index="3"]
-tile_map_data = PackedByteArray("AAASAA8AAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAASAA8AAAAAAAAAAAAmACAAAQAAAAAAAAAlACAAAQAAAAAAAAA=")
 
 [node name="Goal" parent="." index="4"]
 tile_map_data = PackedByteArray("AAAjABEAAgAAAAAAAAA=")

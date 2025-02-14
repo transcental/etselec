@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://bmicx38brrvvy"]
+[gd_scene load_steps=99 format=3 uid="uid://bmicx38brrvvy"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_7b8ng"]
 [ext_resource type="Texture2D" uid="uid://dtnnxtkyyydw2" path="res://Sprites/TileSheets/woodStoneEdges.png" id="2_711ld"]
@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://ckcjdo13j2a08" path="res://Sprites/TileSheets/bgResortStone.png" id="40_38ce3"]
 [ext_resource type="Texture2D" uid="uid://dl4qttxg3vtt0" path="res://Sprites/TileSheets/bgSnow.png" id="41_s7fyi"]
 [ext_resource type="Texture2D" uid="uid://5n4l7rewpum5" path="res://Sprites/spikes/outline_down00.png" id="42_dn2qv"]
+[ext_resource type="Texture2D" uid="uid://dhpbptctb3sy1" path="res://Sprites/checkpoints/stone.png" id="45_io08n"]
 [ext_resource type="Texture2D" uid="uid://gotylk87wfii" path="res://Sprites/spikes/outline_up00.png" id="45_mlbrx"]
 [ext_resource type="PackedScene" uid="uid://bg07ymcviqtgt" path="res://Scenes/Player.tscn" id="46_ci87f"]
 [ext_resource type="Texture2D" uid="uid://d5tapqt2dj8p" path="res://Sprites/TileSheets/savepoint.png" id="46_jmdep"]
@@ -1309,7 +1310,6 @@ texture_region_size = Vector2i(10, 9)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5, -4.5, 5, -4.5, 5, 4.5, -5, 4.5)
 
 [sub_resource type="TileSet" id="TileSet_ng3jy"]
-tile_size = Vector2i(10, 9)
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 sources/4 = SubResource("TileSetAtlasSource_0qnq6")
@@ -1321,11 +1321,16 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6gnw8"]
+texture = ExtResource("45_io08n")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSet" id="TileSet_nck14"]
-tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 5
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_ln0wx")
+sources/1 = SubResource("TileSetAtlasSource_6gnw8")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6u8jb"]
 texture = ExtResource("47_tyxxa")
@@ -1334,7 +1339,6 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_wynfy"]
-tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 5
 physics_layer_0/collision_mask = 0
 sources/2 = SubResource("TileSetAtlasSource_6u8jb")
