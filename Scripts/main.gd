@@ -12,7 +12,8 @@ var current_scene: Node2D
 signal new_death
 
 func new_scene(scene: Resource):
-	current_viewport.remove_child(current_scene)
+	if current_scene:
+		current_viewport.remove_child(current_scene)
 	var object = scene.instantiate()
 	current_scene = object
 	current_scene.died.connect(die)

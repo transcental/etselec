@@ -9,7 +9,7 @@ signal completed_level
 signal got_checkpoint(pos: Vector2)
 
 
-func on_player_collision(player: Player, collision: Node2D) -> void:	
+func on_player_collision(player: Player, collision: Node2D) -> void:
 	if collision == $Spinners: # Spikes! ow ow ow
 		print('Owie, zowie')
 		died.emit()
